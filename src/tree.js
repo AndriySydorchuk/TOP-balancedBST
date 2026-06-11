@@ -53,4 +53,28 @@ export class Tree {
 
     return this.includes(value, root.right);
   }
+
+  insert(value, root = this.#root) {
+    if (value === root.data) return;
+
+    if (value < root.data) {
+      if (!root.left) {
+        root.left = new Node(value);
+        return;
+      }
+
+      this.insert(value, root.left);
+      return;
+    }
+
+    if (value > root.data) {
+      if (!root.right) {
+        root.right = new Node(value);
+        return;
+      }
+
+      this.insert(value, root.right);
+      return;
+    }
+  }
 }
