@@ -8,4 +8,12 @@ export class Node {
     this.#left = null;
     this.#right = null;
   }
+
+  get data() {
+    return this.#data;
+  }
+
+  set data(newData) {
+    this.#data = newData;
+  }
 }
