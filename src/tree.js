@@ -5,9 +5,22 @@ export class Tree {
   #root;
 
   constructor(arr) {
+    this.#checkInput(arr);
+
     const normalizedArr = this.#normalizeArr(arr);
 
     this.#root = this.#buildTree(normalizedArr, 0, normalizedArr.length - 1);
+  }
+
+  #checkInput(arr) {
+    //allows to create an empty tree
+    if (arr === undefined) return;
+
+    if (!Array.isArray(arr))
+      throw new TypeError("Invalid input: expected an array");
+
+    if (arr.some((element) => !Number.isInteger(element)))
+      throw new TypeError("Invalid input: all elements must be integers.");
   }
 
   #normalizeArr(arr) {
