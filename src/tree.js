@@ -29,4 +29,15 @@ export class Tree {
   get root() {
     return this.#root;
   }
+
+  includes(value, root = this.#root) {
+    if (root === null) return false;
+
+    if (root.data === value) return true;
+
+    let found = this.includes(value, root.left);
+    if (found) return found;
+
+    return this.includes(value, root.right);
+  }
 }
