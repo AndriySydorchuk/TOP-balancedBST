@@ -123,6 +123,13 @@ describe("Testing Tree behaviour", () => {
       expect(tree.root.right.right.left).toBeNull();
       expect(tree.root.right.right.right).toBeNull();
     });
+
+    test("throws an error for non-array input", () => {
+      expect(() => new Tree(3)).toThrow(TypeError);
+      expect(() => new Tree("some input")).toThrow(TypeError);
+      expect(() => new Tree({ a: 3, b: 4 })).toThrow(TypeError);
+      expect(() => new Tree(null)).toThrow(TypeError);
+    });
   });
 
   describe("includes(value) method", () => {
