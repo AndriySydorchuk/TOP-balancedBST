@@ -25,4 +25,8 @@ export class Tree {
 
     return root;
   }
+
+  get root() {
+    return this.#root;
+  }
 }
