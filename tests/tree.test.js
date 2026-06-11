@@ -227,4 +227,85 @@ describe("Testing Tree behaviour", () => {
       expect(new Tree([1, 2, 3]).includes(-5)).toBe(false);
     });
   });
+
+  describe("insert(value) method", () => {
+    test("inserts 0 to tree [[3], [1,5]] resulting in [[3], [[[1], [0]],5]]", () => {
+      const tree = new Tree([1, 3, 5]);
+      tree.insert(0);
+
+      expect(tree.includes(0)).toBe(true);
+      expect(tree.root.left.left.data).toBe(0);
+      expect(tree.root.left.left.left).toBeNull();
+      expect(tree.root.left.left.right).toBeNull();
+    });
+
+    test("inserts 2 to tree [[3], [1,5]] resulting in [[3], [[[1], [N, 2]],5]]", () => {
+      const tree = new Tree([1, 3, 5]);
+      tree.insert(2);
+
+      expect(tree.includes(2)).toBe(true);
+      expect(tree.root.left.right.data).toBe(2);
+      expect(tree.root.left.right.left).toBeNull();
+      expect(tree.root.left.right.right).toBeNull();
+    });
+
+    test("inserts 4 to tree [[3], [1,5]] resulting in [[3], [1,[[5], [4]]]]", () => {
+      const tree = new Tree([1, 3, 5]);
+      tree.insert(4);
+
+      expect(tree.includes(4)).toBe(true);
+      expect(tree.root.right.left.data).toBe(4);
+      expect(tree.root.right.left.left).toBeNull();
+      expect(tree.root.right.left.right).toBeNull();
+    });
+
+    test("inserts 6 to tree [[3], [1,5]] resulting in [[3], [1,[[5], [N, 6]]]]", () => {
+      const tree = new Tree([1, 3, 5]);
+      tree.insert(6);
+
+      expect(tree.includes(6)).toBe(true);
+      expect(tree.root.right.right.data).toBe(6);
+      expect(tree.root.right.right.left).toBeNull();
+      expect(tree.root.right.right.right).toBeNull();
+    });
+
+    test("inserts 0 and 2 to tree [[3], [1,5]] resulting in [[3], [[[1],[0,2]],5]]", () => {
+      const tree = new Tree([1, 3, 5]);
+      tree.insert(0);
+      tree.insert(2);
+
+      expect(tree.includes(0)).toBe(true);
+      expect(tree.root.left.left.data).toBe(0);
+      expect(tree.root.left.left.left).toBeNull();
+      expect(tree.root.left.left.right).toBeNull();
+
+      expect(tree.includes(2)).toBe(true);
+      expect(tree.root.left.right.data).toBe(2);
+      expect(tree.root.left.right.left).toBeNull();
+      expect(tree.root.left.left.right).toBeNull();
+    });
+
+    test("inserts 3 and 2 to tree [[5], [1,9]] resulting in [[5], [[[1], [N, [[3], [2]]]],9]]", () => {
+      const tree = new Tree([1, 5, 9]);
+      tree.insert(3);
+      tree.insert(2);
+
+      expect(tree.includes(3)).toBe(true);
+      expect(tree.root.left.right.data).toBe(3);
+
+      expect(tree.includes(2)).toBe(true);
+      expect(tree.root.left.right.left.data).toBe(2);
+    });
+
+    test("do not inserts new value 2 to tree where it's value is already present [[5], [2,9]]", () => {
+      const tree = new Tree([2, 5, 9]);
+      tree.insert(2);
+
+      expect(tree.includes(2)).toBe(true);
+      expect(tree.root.left.left).toBeNull();
+      expect(tree.root.left.right).toBeNull();
+      expect(tree.root.right.left).toBeNull();
+      expect(tree.root.right.right).toBeNull();
+    });
+  });
 });
