@@ -27,4 +27,15 @@ export class Node {
 
     this.#left = newLeft;
   }
+
+  get right() {
+    return this.#right;
+  }
+
+  set right(newRight) {
+    if (!(newRight instanceof Node))
+      throw new TypeError("Invalid child node type");
+
+    this.#right = newRight;
+  }
 }

@@ -128,4 +128,54 @@ describe("Testing Node behaviour", () => {
       expect(() => (node.left = [1, 2])).toThrow(TypeError);
     });
   });
+
+  describe("get right child", () => {
+    test("returns null for empty node's right child", () => {
+      const node = new Node(5);
+      expect(node.right).toBe(null);
+    });
+
+    test("returns the node's right child", () => {
+      const node = new Node(5);
+      node.right = new Node(4);
+      expect(node.right).toEqual(new Node(4));
+    });
+
+    test("returns node's right-right grandchild", () => {
+      const node = new Node(5);
+      node.right = new Node(4);
+      node.right.right = new Node(3);
+      expect(node.right.right).toEqual(new Node(3));
+    });
+  });
+
+  describe("set right child", () => {
+    test("sets the node's right child", () => {
+      const node = new Node(5);
+      node.right = new Node(4);
+
+      expect(node.right).toEqual(new Node(4));
+    });
+
+    test("sets right child to empty node", () => {
+      const node = new Node(5);
+      node.right = new Node();
+
+      expect(node.right).toEqual(new Node());
+    });
+
+    test("sets node's right-right grandchild", () => {
+      const node = new Node(5);
+      node.right = new Node(4);
+      node.right.right = new Node(3);
+
+      expect(node.right.right).toEqual(new Node(3));
+    });
+
+    test("throws Type Error for non-Node input", () => {
+      const node = new Node(5);
+
+      expect(() => (node.right = [1, 2])).toThrow(TypeError);
+    });
+  });
 });
