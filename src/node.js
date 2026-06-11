@@ -3,8 +3,8 @@ export class Node {
   #left;
   #right;
 
-  constructor(data) {
-    this.#data = data ? data : null;
+  constructor(data = null) {
+    this.#data = data;
     this.#left = null;
     this.#right = null;
   }
