@@ -124,4 +124,100 @@ describe("Testing Tree behaviour", () => {
       expect(tree.root.right.right.right).toBeNull();
     });
   });
+
+  describe("includes(value) method", () => {
+    test("returns true for value 1 in tree [[2], [1,3]]", () => {
+      const tree = new Tree([1, 2, 3]);
+      expect(tree.includes(1)).toBe(true);
+    });
+
+    test("returns true for value 2 in tree [[2], [1,3]]", () => {
+      const tree = new Tree([1, 2, 3]);
+      expect(tree.includes(2)).toBe(true);
+    });
+
+    test("returns true for value 3 in tree [[2], [1,3]]", () => {
+      const tree = new Tree([1, 2, 3]);
+      expect(tree.includes(3)).toBe(true);
+    });
+
+    test("returns true for value 1 in tree [[4], [[2], [1, 3]], [[6], [5, 7]]]", () => {
+      const tree = new Tree([1, 2, 3, 4, 5, 6, 7]);
+      expect(tree.includes(1)).toBe(true);
+    });
+
+    test("returns true for value 2 in tree [[4], [[2], [1, 3]], [[6], [5, 7]]]", () => {
+      const tree = new Tree([1, 2, 3, 4, 5, 6, 7]);
+      expect(tree.includes(2)).toBe(true);
+    });
+
+    test("returns true for value 3 in tree [[4], [[2], [1, 3]], [[6], [5, 7]]]", () => {
+      const tree = new Tree([1, 2, 3, 4, 5, 6, 7]);
+      expect(tree.includes(3)).toBe(true);
+    });
+
+    test("returns true for value 4 in tree [[4], [[2], [1, 3]], [[6], [5, 7]]]", () => {
+      const tree = new Tree([1, 2, 3, 4, 5, 6, 7]);
+      expect(tree.includes(4)).toBe(true);
+    });
+
+    test("returns true for value 5 in tree [[4], [[2], [1, 3]], [[6], [5, 7]]]", () => {
+      const tree = new Tree([1, 2, 3, 4, 5, 6, 7]);
+      expect(tree.includes(5)).toBe(true);
+    });
+
+    test("returns true for value 6 in tree [[4], [[2], [1, 3]], [[6], [5, 7]]]", () => {
+      const tree = new Tree([1, 2, 3, 4, 5, 6, 7]);
+      expect(tree.includes(6)).toBe(true);
+    });
+
+    test("returns true for value 7 in tree [[4], [[2], [1, 3]], [[6], [5, 7]]]", () => {
+      const tree = new Tree([1, 2, 3, 4, 5, 6, 7]);
+      expect(tree.includes(7)).toBe(true);
+    });
+
+    test("returns true for value 1 in anonymous tree [[2], [1,3]]", () => {
+      expect(new Tree([1, 2, 3]).includes(1)).toBe(true);
+    });
+
+    test("returns true for value 2 in anonymous tree [[2], [1,3]]", () => {
+      expect(new Tree([1, 2, 3]).includes(2)).toBe(true);
+    });
+
+    test("returns true for value 3 in anonymous tree [[2], [1,3]]", () => {
+      expect(new Tree([1, 2, 3]).includes(3)).toBe(true);
+    });
+
+    test("returns false for value 4 in tree [[2], [1,3]]", () => {
+      const tree = new Tree([1, 2, 3]);
+      expect(tree.includes(4)).toBe(false);
+    });
+
+    test("returns false for value 0 in tree [[2], [1,3]]", () => {
+      const tree = new Tree([1, 2, 3]);
+      expect(tree.includes(0)).toBe(false);
+    });
+
+    test("returns false for value -5 in tree [[2], [1,3]]", () => {
+      const tree = new Tree([1, 2, 3]);
+      expect(tree.includes(-5)).toBe(false);
+    });
+
+    test("returns false for value null in tree [[2], [1,3]]", () => {
+      const tree = new Tree([1, 2, 3]);
+      expect(tree.includes(-5)).toBe(false);
+    });
+
+    test("returns false for value 4 in anonymous tree [[2], [1,3]]", () => {
+      expect(new Tree([1, 2, 3]).includes(4)).toBe(false);
+    });
+
+    test("returns false for value 0 in anonymous tree [[2], [1,3]]", () => {
+      expect(new Tree([1, 2, 3]).includes(0)).toBe(false);
+    });
+
+    test("returns false for value -5 in anonymous tree [[2], [1,3]]", () => {
+      expect(new Tree([1, 2, 3]).includes(-5)).toBe(false);
+    });
+  });
 });
