@@ -22,7 +22,7 @@ export class Node {
   }
 
   set left(newLeft) {
-    if (!(newLeft instanceof Node))
+    if (!(newLeft instanceof Node) && newLeft !== null)
       throw new TypeError("Invalid child node type");
 
     this.#left = newLeft;
@@ -33,7 +33,7 @@ export class Node {
   }
 
   set right(newRight) {
-    if (!(newRight instanceof Node))
+    if (!(newRight instanceof Node) && newRight !== null)
       throw new TypeError("Invalid child node type");
 
     this.#right = newRight;
