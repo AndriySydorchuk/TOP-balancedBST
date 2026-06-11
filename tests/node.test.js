@@ -78,4 +78,54 @@ describe("Testing Node behaviour", () => {
       expect(node.data).toBe("Five");
     });
   });
+
+  describe("get left child", () => {
+    test("returns null for empty node's left child", () => {
+      const node = new Node(5);
+      expect(node.left).toBe(null);
+    });
+
+    test("returns the node's left child", () => {
+      const node = new Node(5);
+      node.left = new Node(4);
+      expect(node.left).toEqual(new Node(4));
+    });
+
+    test("returns node's left-left grandchild", () => {
+      const node = new Node(5);
+      node.left = new Node(4);
+      node.left.left = new Node(3);
+      expect(node.left.left).toEqual(new Node(3));
+    });
+  });
+
+  describe("set left child", () => {
+    test("sets the node's left child", () => {
+      const node = new Node(5);
+      node.left = new Node(4);
+
+      expect(node.left).toEqual(new Node(4));
+    });
+
+    test("sets left child to empty node", () => {
+      const node = new Node(5);
+      node.left = new Node();
+
+      expect(node.left).toEqual(new Node());
+    });
+
+    test("sets node's left-left grandchild", () => {
+      const node = new Node(5);
+      node.left = new Node(4);
+      node.left.left = new Node(3);
+
+      expect(node.left.left).toEqual(new Node(3));
+    });
+
+    test("throws Type Error for non-Node input", () => {
+      const node = new Node(5);
+
+      expect(() => (node.left = [1, 2])).toThrow(TypeError);
+    });
+  });
 });

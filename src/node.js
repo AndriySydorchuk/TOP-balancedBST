@@ -16,4 +16,15 @@ export class Node {
   set data(newData) {
     this.#data = newData;
   }
+
+  get left() {
+    return this.#left;
+  }
+
+  set left(newLeft) {
+    if (!(newLeft instanceof Node))
+      throw new TypeError("Invalid child node type");
+
+    this.#left = newLeft;
+  }
 }
